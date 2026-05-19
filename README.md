@@ -39,7 +39,7 @@ Uma aplicação Single Page Application (SPA) moderna que simula uma plataforma 
 
 ## 🚀 Tecnologias e Ferramentas Utilizadas
 
-- **React 18** (Renderização Concorrente com `createRoot`)
+- **React 19.2.6** (Renderização Concorrente com `createRoot`)
 - **Vite** (Ambiente de desenvolvimento ultrarrápido)
 - **Styled Components** (CSS-in-JS com herança de blocos e polimorfismo `as={Link}`)
 - **React Router Dom v6** (Gerenciamento de rotas e histórico)
