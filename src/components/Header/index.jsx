@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'; 
-import { useAuth } from "../../hooks/useAuth"; // Usa o hook customizado direto da pasta hooks
+import { useAuth } from "../../hooks/useAuth"; 
 
 import logo from '../../assets/react.svg';
 import Almir from '../../assets/almir.jpg'; 
@@ -21,8 +21,8 @@ import {
 export function Header() {
   const navigate = useNavigate();
 
-  // Puxa o estado e os dados de forma limpa, sem precisar de useContext + AuthContext
-  const { user, isAuthenticated } = useAuth();
+  // Puxa o handleSignOut direto do seu contexto global
+  const { user, isAuthenticated, handleSignOut } = useAuth();
   
   const handleNavigateToLogin = () => navigate('/login');
   const handleNavigateToRegister = () => navigate('/cadastro');
@@ -52,6 +52,10 @@ export function Header() {
           {isAuthenticated ? (
             <>
               <MenuRight as={Link} to="/">Home</MenuRight>
+              {/* Botão de Sair que dispara o encerramento da sessão */}
+              <MenuRight onClick={handleSignOut} style={{ color: '#ff5f5f', fontWeight: 'bold' }}>
+                Sair
+              </MenuRight>
               <UserPicture src={Almir} alt={`Foto de perfil de ${user?.name || 'Usuário'}`} />
             </>
           ) : (
