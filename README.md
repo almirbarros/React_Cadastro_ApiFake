@@ -93,9 +93,76 @@ Para testar o fluxo de login sem a necessidade de criar uma nova conta, utilize 
 
 ---
 
+## 🗄️ Estrutura do Banco de Dados Mockado (JSON Server)
+
+A persistência de dados local é simulada pelo arquivo `db.json`. Ele fornece as rotas REST completas para gerenciar o fluxo de autenticação e preencher dinamicamente a barra lateral de pontuação.
+
+### 👥 1. users (Coleção de Usuários)
+- **Endpoint**: `/users`
+- **Campos**: `id`, `name`, `email`, `senha`.
+- **Objetivo**: Armazenar os perfis cadastrados para validação no formulário de login.
+```json
+[
+  { "id": 1, "name": "Almir", "email": "almir@email.com", "senha": "123456" },
+  { "id": 2, "name": "Bernardo", "email": "bernardo@email.com", "senha": "876543" }
+]
+```
+
+### 🏆 2. ranking (Coleção do Ranking)
+- **Endpoint**: `/ranking`
+- **Campos**: `id`, `nome`, `image`, `percentual`.
+- **Objetivo**: Fornecer a listagem de progresso e as referências de imagens processadas no feed.
+```json
+[
+  { "id": 1, "nome": "Almir Barros", "image": "/almir.jpg", "percentual": 48 },
+  { "id": 2, "nome": "Bernardo Pirata", "image": "/bernardo.jpg", "percentual": 6 },
+  { "id": 3, "nome": "Vanessa Correa", "image": "/vanessa.jpg", "percentual": 44 },
+  { "id": 4, "nome": "Larissa Correa", "image": "/larissa.jpg", "percentual": 22 },
+  { "id": 5, "nome": "Breno Barros", "image": "/breno.jpg", "percentual": 23}
+]
+```
+
+---
+
+## 🖼️ Mapeamento de Telas & Fluxo de Negócio
+
+Abaixo está o detalhamento técnico e visual das principais interfaces que compõem o ecossistema da aplicação, integrando componentes semânticos e assets dinâmicos.
+
+### 🏠 1. Home (Página Inicial)
+- **Objetivo**: Tela de boas-vindas com foco em conversão de usuários.
+- **Assets Utilizados**: `src/assets/hero.png` (Ilustração promocional responsiva).
+- **Lógica de Estilos**: Alinhamento inteligente via `flex-direction` que se adapta automaticamente para dispositivos móveis, jogando a imagem para o topo e centralizando os textos motivacionais.
+<img width="1587" height="698" alt="image" src="https://github.com/user-attachments/assets/b8f41bc0-dc4a-4f80-a57f-07f5208dbdcd" />
+
+### 📝 2. Cadastro (Registro de Usuário)
+- **Objetivo**: Permitir a criação de novas contas com validação em tempo real.
+- **Componentes & Ícones**: Integração com `react-hook-form` + `Yup`. Utiliza os ícones `MdPerson`, `MdEmail` e `MdLock` para os campos do formulário.
+- **Lógica de Estilos**: Schema de validação configurado no modo `onChange`, fornecendo feedback visual imediato na cor `${theme.colors.error}` caso os critérios mínimos não sejam atendidos.
+<img width="1590" height="790" alt="image" src="https://github.com/user-attachments/assets/5b662241-a93f-485f-a6f4-3f2f78e5b8e4" />
+
+### 🔐 3. Login (Autenticação)
+- **Objetivo**: Validar credenciais de acesso contra a base mockada do JSON Server.
+- **Componentes & Ícones**: Reutiliza a estrutura atômica do componente `Input` injetando os ícones `MdEmail` e `MdLock`.
+- **Lógica de Estilos**: Uso avançado do seletor `&:focus-within` no container do input, aplicando a cor de foco `${theme.colors.primary}` na borda inferior sem causar re-renderizações via JavaScript.
+<img width="1602" height="800" alt="image" src="https://github.com/user-attachments/assets/9b8cefb2-5f9e-499c-97da-aa63f34b6568" />
+
+- ### 👤 4. Menu e Estado Logado (Gerenciamento de Sessão)
+- **Objetivo**: Adaptar a interface global e o cabeçalho (`Header`) dinamicamente quando um usuário está autenticado.
+- **Lógica de Negócio**: 
+  - Consome o hook customizado `useAuth()` para monitorar o estado de `isAuthenticated` de forma reativa.
+  - Altera o fluxo visual ocultando botões públicos de "Entrar" e "Cadastrar", exibindo a barra de pesquisa interna, links exclusivos (`Live Code` / `Global`) e a foto do perfil ativo.
+- **Mecanismo de Logoff (Sair)**: Dispara a função `handleSignOut`, responsável por limpar de forma segura os dados salvos em `@MeuApp:user` no `localStorage`, redefinir os estados globais e redirecionar o usuário instantaneamente para a tela de login.
+<img width="1659" height="706" alt="image" src="https://github.com/user-attachments/assets/d644ee71-9c0c-4be3-a1aa-08136d7ec39a" />
+
+### 📰 5. Feed & Ranking (Área Protegida)
+- **Objetivo**: Exibir as postagens da comunidade e o ranking de pontuação da semana.
+- **Assets Utilizados**: Fotos de perfil locais (`almir.jpg`, `bernardo.jpg`, `breno.jpg`, `larissa.jpg`, `vanessa.jpg`).
+- **Lógica de Negócio & Estilos**: 
+  - Renderização dinâmica através de um dicionário de imagens integrado ao pipeline do Vite, evitando quebra de caminhos de arquivos em produção.
+  - Ordenação automatizada de dados utilizando o algoritmo `[...data].sort((a, b) => b.percentual - a.percentual)`.
+  - Barras de progresso responsivas que utilizam *Transient Props* (`$percentual`) para controlar o preenchimento dinâmico do CSS via pseudo-elementos `&::after`.
+<img width="1599" height="918" alt="image" src="https://github.com/user-attachments/assets/818c02df-ebfa-4659-81f6-686d150bbe34" />
+
 ## 🧑‍💻 Autor
 
 Desenvolvido por **Almir Barros** — Sinta-se à vontade para se conectar comigo ou contribuir com o projeto!
-
-[![LinkedIn](https://shields.io)](https://linkedin.com)
-[![GitHub](https://shields.io)](https://github.com)
