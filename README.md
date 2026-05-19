@@ -1,9 +1,12 @@
 # 🚀 Meu App - Plataforma de Aprendizado com React
+![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?logo=styledcomponents&logoColor=fff)
+![React Hook Form](https://img.shields.io/badge/-React%20Hook%20Form-EC5990?style=flat&logo=reacthookform&logoColor=white)
+![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat&logo=vite&logoColor=white)
 
-[![React](https://shields.io)](https://reactjs.org)
-[![Styled Components](https://shields.io)](https://styled-components.com)
-[![React Hook Form](https://shields.io)](https://react-hook-form.com)
-[![Vite](https://shields.io)](https://vitejs.dev)
+<!--  Link dos icones -->
+<!-- https://gist.github.com/kimjisub/360ea6fc43b82baaf7193175fd12d2f7#file-gistfile1-txt-L1 -->
+<!-- https://github.com/inttter/md-badges -->
 
 Uma aplicação Single Page Application (SPA) moderna que simula uma plataforma de ensino tecnológico. O projeto conta com fluxos completos de cadastro, autenticação baseada em contexto, validação de formulários em tempo real, rotas privadas blindadas e consumo de API mockada.
 
