@@ -1,0 +1,13 @@
+{
+  "users": [
+    { "id": 1, "name": "Almir", "email": "almir@email.com", "senha": "123456" },
+    { "id": 2, "name": "Bernardo", "email": "bernardo@email.com", "senha": "876543" }
+  ],
+  "ranking": [
+    { "id": 1, "nome": "Almir Barros", "image": "/almir.jpg", "percentual": 48 },
+    { "id": 2, "nome": "Bernardo Pirata", "image": "/bernardo.jpg", "percentual": 6 },
+    { "id": 3, "nome": "Vanessa Correa", "image": "/vanessa.jpg", "percentual": 44 },
+    { "id": 4, "nome": "Larissa Correa", "image": "/larissa.jpg", "percentual": 22 },
+    { "id": 5, "nome": "Breno Barros", "image": "/breno.jpg", "percentual": 23}
+  ]
+}
