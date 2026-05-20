@@ -72,8 +72,23 @@ Certifique-se de ter o **Node.js** e o **npm** (ou **Yarn**) instalados em sua m
    ```bash
    npx json-server --watch db.json --port 8001
    ```
+   **OU**
+   
+   Abra o arquivo ```package.json``` localizado na raiz do seu projeto.
+   Adicione no bloco "scripts" apontando para a ferramenta que você vai usar para rodar o projeto.
+   ```
+   "scripts": {
+       ...
+       "api": "json-server --watch db.json -p 8001"
+    }
+    ```
 
-4. **Em outro terminal, execute o servidor de desenvolvimento do Front-end:**
+   **Execute**
+   ```bash
+   yarn api
+   ```
+
+5. **Em outro terminal, execute o servidor de desenvolvimento do Front-end:**
    ```bash
    npm run dev
    # ou
